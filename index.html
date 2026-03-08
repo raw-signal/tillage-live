@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tillage — Cultivate Music Together</title>
+  <meta name="description" content="Don't let your ideas die in the dark. Tillage is a collaborative music platform where rough ideas grow into something real." />
+  <meta property="og:title" content="Tillage — Cultivate Music Together" />
+  <meta property="og:description" content="Don't let your ideas die in the dark. Plant them." />
+  <meta property="og:url" content="https://tillage.live" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --canvas:  #F2F0E9;
+      --navy:    #2D3B4F;
+      --orange:  #D95D1E;
+      --green:   #5A8A52;
+      --ink:     #1C2B1A;
+      --muted:   rgba(44, 59, 79, 0.45);
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--canvas);
+      color: var(--navy);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Soil strip at bottom ── */
+    body::after {
+      content: '';
+      display: block;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: #2A1F14;
+      z-index: 0;
+    }
+
+    /* ── Grain texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 24px 120px;
+    }
+
+    /* ── Header ── */
+    header {
+      width: 100%;
+      max-width: 640px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 0 0;
+    }
+
+    .logo {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--orange);
+      text-transform: uppercase;
+      border: 1.5px solid var(--orange);
+      border-radius: 100px;
+      padding: 5px 12px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      width: 100%;
+      max-width: 640px;
+      margin-top: 72px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: clamp(44px, 10vw, 72px);
+      font-weight: bold;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 28px;
+    }
+
+    h1 span {
+      color: var(--orange);
+    }
+
+    .tagline {
+      font-size: clamp(16px, 4vw, 19px);
+      color: var(--navy);
+      opacity: 0.65;
+      line-height: 1.65;
+      max-width: 440px;
+      margin: 0 auto 48px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--orange);
+      margin: 0 auto 48px;
+      border-radius: 2px;
+    }
+
+    /* ── Quote ── */
+    .quote {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: clamp(18px, 4vw, 22px);
+      color: var(--navy);
+      line-height: 1.5;
+      max-width: 480px;
+      margin: 0 auto 56px;
+      opacity: 0.8;
+    }
+
+    .quote::before { content: '\201C'; }
+    .quote::after  { content: '\201D'; }
+
+    /* ── Stages ── */
+    .stages {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .stage {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border-radius: 100px;
+      padding: 10px 18px;
+      box-shadow: 0 2px 12px rgba(45, 59, 79, 0.08);
+    }
+
+    .stage-icon { font-size: 18px; }
+
+    .stage-text {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--navy);
+    }
+
+    .stage-arrow {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 -4px;
+      align-self: center;
+    }
+
+    /* ── Email form ── */
+    .signup {
+      width: 100%;
+      max-width: 420px;
+      margin-bottom: 16px;
+    }
+
+    .signup-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .signup-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .signup-input {
+      flex: 1;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(45, 59, 79, 0.15);
+      background: white;
+      font-size: 15px;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .signup-input::placeholder { color: var(--muted); }
+    .signup-input:focus { border-color: var(--orange); }
+
+    .signup-btn {
+      padding: 14px 22px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+
+    .signup-btn:hover  { background: var(--orange); }
+    .signup-btn:active { transform: scale(0.97); }
+
+    .signup-success {
+      display: none;
+      text-align: center;
+      font-size: 14px;
+      color: var(--green);
+      font-weight: 600;
+      padding: 14px;
+    }
+
+    .signup-note {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── Soil / stake decoration ── */
+    .stake-wrap {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .stake {
+      width: 8px;
+      height: 44px;
+      background: #C8B89A;
+      border-left: 1px solid rgba(44,35,20,0.2);
+      border-right: 1px solid rgba(44,35,20,0.2);
+    }
+
+    .soil-dots {
+      position: fixed;
+      bottom: 28px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      z-index: 4;
+    }
+
+    .soil-streak {
+      width: 32px;
+      height: 3px;
+      background: #6B4F30;
+      border-radius: 2px;
+      opacity: 0.18;
+    }
+
+    /* ── Seed emoji float animation ── */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .seed-float {
+      font-size: 52px;
+      display: block;
+      margin: 0 auto 28px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      position: fixed;
+      bottom: 88px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      z-index: 4;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 480px) {
+      .signup-row { flex-direction: column; }
+      .stages { gap: 8px; }
+      .stage  { padding: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <span class="logo">Tillage</span>
+      <span class="badge">Coming Soon</span>
+    </header>
+
+    <main class="hero">
+      <span class="seed-float">🌱</span>
+
+      <p class="eyebrow">A new kind of music app</p>
+
+      <h1>Cultivate music<br /><span>together.</span></h1>
+
+      <p class="tagline">
+        Every musician has a graveyard of voice memos —
+        ideas that never became songs. Tillage exists to change that.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="quote">Don't let your ideas die in the dark. Plant them.</p>
+
+      <div class="stages">
+        <div class="stage">
+          <span class="stage-icon">🌱</span>
+          <span class="stage-text">Plant a seed</span>
+        </div>
+        <span class="stage-arrow">→</span>
+        <div class="stage">
+          <span class="stage-icon">💧</span>
+          <span class="stage-text">Others water it</span>
+        </div>
+        <span class="stage-arrow">→</span>
+        <div class="stage">
+          <span class="stage-icon">🌳</span>
+          <span class="stage-text">Watch it grow</span>
+        </div>
+      </div>
+
+      <div class="signup">
+        <p class="signup-label">Be first in the field</p>
+        <form class="signup-row" onsubmit="handleSignup(event)">
+          <input
+            class="signup-input"
+            type="email"
+            placeholder="your@email.com"
+            required
+          />
+          <button class="signup-btn" type="submit">Notify me</button>
+        </form>
+        <p class="signup-success" id="success">✓ You're on the list. We'll be in touch.</p>
+        <p class="signup-note">No spam. Just a nudge when the gates open.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Soil decoration -->
+  <div class="stake-wrap">
+    <div class="stake"></div>
+  </div>
+  <div class="soil-dots">
+    <div class="soil-streak"></div>
+    <div class="soil-streak" style="opacity:0.12; width:48px;"></div>
+    <div class="soil-streak" style="opacity:0.22; width:24px;"></div>
+  </div>
+  <div class="footer">tillage.live</div>
+
+  <script>
+    function handleSignup(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.querySelector('input').value;
+
+      // Hide form, show success
+      form.style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+
+      // Optional: POST to a free form service like Formspree
+      // Replace YOUR_FORM_ID with your Formspree form ID
+      // fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email }),
+      // });
+
+      console.log('Signup:', email);
+    }
+  </script>
+</body>
+</html>
