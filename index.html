@@ -146,10 +146,18 @@
     /* ── Stages ── */
     .stages {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 48px;
+    }
+
+    .stages-row {
+      display: flex;
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
-      margin-bottom: 64px;
+      align-items: center;
     }
 
     .stage {
@@ -176,6 +184,40 @@
       color: var(--muted);
       margin: 0 -4px;
       align-self: center;
+    }
+
+    .stages-down-arrow {
+      font-size: 20px;
+      color: var(--muted);
+      margin: 14px 0 18px;
+      line-height: 1;
+    }
+
+    .stage-harvest {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--navy);
+      border-radius: 100px;
+      padding: 14px 28px;
+      box-shadow: 0 4px 20px rgba(45, 59, 79, 0.18);
+    }
+
+    .stage-harvest-icon { font-size: 22px; }
+
+    .stage-harvest-text {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    .stage-harvest-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.3px;
+      margin-top: 1px;
     }
 
     /* ── Email form ── */
@@ -352,8 +394,9 @@
     /* ── Mobile ── */
     @media (max-width: 480px) {
       .signup-row { flex-direction: column; }
-      .stages { gap: 8px; }
-      .stage  { padding: 8px 14px; }
+      .stages-row { gap: 8px; }
+      .stage       { padding: 8px 14px; }
+      .stage-harvest { padding: 12px 22px; }
       .harvest-card { padding: 32px 24px; }
     }
   </style>
@@ -382,24 +425,29 @@
       <p class="quote">Don't let your ideas die in the dark. Plant them.</p>
 
       <div class="stages">
-        <div class="stage">
-          <span class="stage-icon">🌱</span>
-          <span class="stage-text">Plant a seed</span>
+        <div class="stages-row">
+          <div class="stage">
+            <span class="stage-icon">🌱</span>
+            <span class="stage-text">Plant a seed</span>
+          </div>
+          <span class="stage-arrow">→</span>
+          <div class="stage">
+            <span class="stage-icon">💧</span>
+            <span class="stage-text">Others water it</span>
+          </div>
+          <span class="stage-arrow">→</span>
+          <div class="stage">
+            <span class="stage-icon">🌳</span>
+            <span class="stage-text">Watch it grow</span>
+          </div>
         </div>
-        <span class="stage-arrow">→</span>
-        <div class="stage">
-          <span class="stage-icon">💧</span>
-          <span class="stage-text">Others water it</span>
-        </div>
-        <span class="stage-arrow">→</span>
-        <div class="stage">
-          <span class="stage-icon">🌳</span>
-          <span class="stage-text">Watch it grow</span>
-        </div>
-        <span class="stage-arrow">→</span>
-        <div class="stage">
-          <span class="stage-icon">🎶</span>
-          <span class="stage-text">Harvest</span>
+        <span class="stages-down-arrow">↓</span>
+        <div class="stage-harvest">
+          <span class="stage-harvest-icon">🎶</span>
+          <div>
+            <div class="stage-harvest-text">Harvest</div>
+            <div class="stage-harvest-sub">The best seeds get pressed to vinyl</div>
+          </div>
         </div>
       </div>
 
