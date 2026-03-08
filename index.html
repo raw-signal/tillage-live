@@ -224,17 +224,28 @@
     .signup {
       width: 100%;
       max-width: 420px;
+      margin-top: 56px;
       margin-bottom: 16px;
+      text-align: center;
     }
 
-    .signup-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--muted);
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 14px;
+    .signup-heading {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: clamp(28px, 6vw, 38px);
+      font-weight: bold;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .signup-sub {
+      font-size: 15px;
+      color: var(--navy);
+      opacity: 0.55;
+      line-height: 1.5;
+      margin-bottom: 24px;
     }
 
     .signup-row {
@@ -451,20 +462,6 @@
         </div>
       </div>
 
-      <div class="signup">
-        <p class="signup-label">Be first in the field</p>
-        <form class="signup-row" onsubmit="handleSignup(event)">
-          <input
-            class="signup-input"
-            type="email"
-            placeholder="your@email.com"
-            required
-          />
-          <button class="signup-btn" type="submit">Notify me</button>
-        </form>
-        <p class="signup-success" id="success">✓ You're on the list. We'll be in touch.</p>
-        <p class="signup-note">No spam. Just a nudge when the gates open.</p>
-      </div>
       <div class="harvest">
         <div class="harvest-card">
           <span class="vinyl">🎵</span>
@@ -488,6 +485,22 @@
             contributor will be credited on anything that does.
           </p>
         </div>
+      </div>
+
+      <div class="signup">
+        <h2 class="signup-heading">Be first in the field.</h2>
+        <p class="signup-sub">Join the waiting list — we'll let you know when the gates open.</p>
+        <form class="signup-row" onsubmit="handleSignup(event)">
+          <input
+            class="signup-input"
+            type="email"
+            placeholder="your@email.com"
+            required
+          />
+          <button class="signup-btn" type="submit">Notify me</button>
+        </form>
+        <p class="signup-success" id="success">✓ You're on the list. We'll be in touch.</p>
+        <p class="signup-note">No spam. Just a nudge when the gates open.</p>
       </div>
     </main>
   </div>
