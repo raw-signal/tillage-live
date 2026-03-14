@@ -648,8 +648,7 @@
       form.style.display = 'none';
       document.getElementById('success').style.display = 'block';
 
-      // Optional: POST to a free form service like Formspree
-      // Replace YOUR_FORM_ID with your Formspree form ID
+      // Form to handle signups
       fetch('https://formspree.io/f/mjgakzyj', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
