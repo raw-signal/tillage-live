@@ -481,9 +481,9 @@
     }
 
     .vinyl {
-      font-size: 48px;
       display: block;
       margin: 0 auto 20px;
+      line-height: 0;
     }
 
     /* ── Mobile ── */
@@ -586,7 +586,23 @@
 
       <div class="harvest">
         <div class="harvest-card">
-          <span class="vinyl">💿</span>
+          <span class="vinyl">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64" aria-label="Vinyl record">
+              <!-- Outer record -->
+              <circle cx="50" cy="50" r="49" fill="#1a1a1a"/>
+              <!-- Groove rings -->
+              <circle cx="50" cy="50" r="44" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+              <circle cx="50" cy="50" r="36" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+              <circle cx="50" cy="50" r="32" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+              <circle cx="50" cy="50" r="28" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+              <!-- Label -->
+              <circle cx="50" cy="50" r="20" fill="#c8a96e"/>
+              <circle cx="50" cy="50" r="14" fill="#b8955a"/>
+              <!-- Center hole -->
+              <circle cx="50" cy="50" r="3" fill="#1a1a1a"/>
+            </svg>
+          </span>
           <p class="harvest-eyebrow">The Harvest</p>
           <h2 class="harvest-title">Your music, pressed<br />to vinyl. Forever.</h2>
           <p class="harvest-body">
