@@ -18,7 +18,7 @@
       --orange:  #D95D1E;
       --green:   #5A8A52;
       --ink:     #1C2B1A;
-      --muted:   rgba(44, 59, 79, 0.45);
+      --muted:   rgba(44, 59, 79, 0.6);
     }
 
     html, body {
@@ -88,7 +88,7 @@
     }
 
     .eyebrow {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 3px;
       color: var(--muted);
@@ -114,7 +114,7 @@
     .tagline {
       font-size: clamp(16px, 4vw, 19px);
       color: var(--navy);
-      opacity: 0.65;
+      opacity: 0.75;
       line-height: 1.65;
       max-width: 440px;
       margin: 0 auto 48px;
@@ -154,7 +154,7 @@
     }
 
     .stages-label {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 3px;
       color: var(--muted);
@@ -164,44 +164,44 @@
 
     .stages-row {
       display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      align-items: stretch;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
     }
 
     .stage {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       background: white;
       border-radius: 16px;
-      padding: 16px 14px;
+      padding: 20px 24px;
       box-shadow: 0 2px 12px rgba(45, 59, 79, 0.08);
       text-align: center;
-      min-width: 106px;
+      width: 100%;
+      max-width: 300px;
     }
 
-    .stage-icon { font-size: 18px; }
+    .stage-icon { font-size: 22px; }
 
     .stage-text {
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 700;
       letter-spacing: 0.5px;
       color: var(--navy);
     }
 
     .stage-sub {
-      font-size: 10px;
+      font-size: 14px;
       color: var(--muted);
       line-height: 1.4;
     }
 
     .stage-arrow {
-      font-size: 14px;
+      font-size: 16px;
       color: var(--muted);
-      margin: 0 -4px;
+      margin: 6px 0;
       align-self: center;
     }
 
@@ -222,8 +222,6 @@
       box-shadow: 0 4px 20px rgba(45, 59, 79, 0.18);
     }
 
-    .stage-harvest-icon { font-size: 22px; }
-
     .stage-harvest-text {
       font-size: 14px;
       font-weight: 700;
@@ -233,10 +231,10 @@
     }
 
     .stage-harvest-sub {
-      font-size: 11px;
-      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
       letter-spacing: 0.3px;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
     /* ── Email form ── */
@@ -270,7 +268,7 @@
     .signup-sub {
       font-size: 15px;
       color: var(--navy);
-      opacity: 0.55;
+      opacity: 0.7;
       line-height: 1.5;
       margin-bottom: 24px;
     }
@@ -396,13 +394,13 @@
     .screenshot-label {
       font-family: Georgia, 'Times New Roman', serif;
       font-style: italic;
-      font-size: 15px;
+      font-size: 20px;
       font-weight: bold;
       color: var(--navy);
     }
 
     .screenshot-sub {
-      font-size: 11px;
+      font-size: 14px;
       color: var(--muted);
       line-height: 1.5;
     }
@@ -433,7 +431,7 @@
     }
 
     .harvest-eyebrow {
-      font-size: 10px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: 3px;
       color: var(--orange);
@@ -474,7 +472,7 @@
 
     .harvest-note {
       font-size: 12px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.5);
       line-height: 1.6;
       max-width: 380px;
       margin: 0 auto;
@@ -489,8 +487,7 @@
     /* ── Mobile ── */
     @media (max-width: 480px) {
       .signup-row { flex-direction: column; }
-      .stages-row { gap: 8px; }
-      .stage       { padding: 12px 10px; min-width: 90px; }
+      .stages-row { gap: 0; }
       .stage-harvest { padding: 12px 22px; }
       .harvest-card { padding: 32px 24px; }
       .screenshot-row {
@@ -537,13 +534,13 @@
             <span class="stage-text">Plant a seed</span>
             <span class="stage-sub">Share a voice memo or rough idea</span>
           </div>
-          <span class="stage-arrow">→</span>
+          <span class="stage-arrow">↓</span>
           <div class="stage">
             <span class="stage-icon">💧</span>
             <span class="stage-text">Others water it</span>
             <span class="stage-sub">Collaborators add their touch</span>
           </div>
-          <span class="stage-arrow">→</span>
+          <span class="stage-arrow">↓</span>
           <div class="stage">
             <span class="stage-icon">🌳</span>
             <span class="stage-text">Watch it grow</span>
@@ -552,7 +549,6 @@
         </div>
         <span class="stages-down-arrow">↓</span>
         <div class="stage-harvest">
-          <span class="stage-harvest-icon">🎶</span>
           <div>
             <div class="stage-harvest-text">Harvest</div>
             <div class="stage-harvest-sub">Your work, documented forever</div>
